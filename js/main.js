@@ -32,9 +32,13 @@ deleteButton.addEventListener("click", backspace);
 
 clearButton.addEventListener("click", clear);
 
+/*
+
+*** Working on adding keydown events ***
+
 document.addEventListener("keydown", () => {
 	alert("!");
-})
+})*/
 
 function append(number) {
 	if (previousResult.includes("=")) {
@@ -67,6 +71,9 @@ function backspace() {
 function clear() {
 	previousResult = "";
 	currentOperation = "";
+	a = undefined;
+	b = undefined;
+	operator = undefined;
 	updateDisplay();
 }
 
@@ -92,8 +99,9 @@ function operate() {
 				break;
 			case "/":
 				if (b == 0) {
-					result = "NOPE! No dividing by 0 !!!";
-					break;
+					alert("NOPE! No dividing by 0 !!!");
+					clear();
+					return;
 				}
 				result = divide(a, b);
 		}
