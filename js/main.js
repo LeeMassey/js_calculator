@@ -15,15 +15,17 @@ let result;
 
 for (let i=0; i<numberButtons.length; i++) {
 	numberButtons[i].addEventListener("click", () => {
-		if (currentOperation.length < 17) {
-			append(numberButtons[i].textContent);
-			updateDisplay();
-		}
+	//	if (currentOperation.length < 17) {
+		append(numberButtons[i].textContent);
+	//		updateDisplay();
+	//	}
 	});
 }
 
 for (let i=0; i<operatorButtons.length; i++) {
-	operatorButtons[i].addEventListener("click", selectOperator)
+	operatorButtons[i].addEventListener("click", () => {
+		selectOperator(operatorButtons[i].textContent);
+	})
 }
 
 equalsButton.addEventListener("click", operate);
@@ -32,31 +34,46 @@ deleteButton.addEventListener("click", backspace);
 
 clearButton.addEventListener("click", clear);
 
-/*
 
-*** Working on adding keydown events ***
 
-document.addEventListener("keydown", () => {
-	alert("!");
-})*/
+document.addEventListener("keydown", (e) => {
+	if (e.key == "." || e.key >=0 && e.key <=9) {
+		append(e.key);
+	}
+	else if (e.key == "+" || e.key == "-" || e.key == "*" || e.key == "/") {
+		selectOperator(e.key);
+	}
+	else if (e.key == "Enter") {
+		operate();
+	}
+	else if (e.key == "Backspace") {
+		backspace();
+	}
+	else if (e.key == "Delete" || e.key == "Escape") {
+		clear();
+	}
+})
 
 function append(number) {
-	if (previousResult.includes("=")) {
-		currentOperation = ""
-		previousResult = "";
-	}
-	if (number != "." || !currentOperation.includes(".")) {
-		currentOperation += number;
+	if (currentOperation.length < 17) {
+		if (previousResult.includes("=")) {
+			currentOperation = ""
+			previousResult = "";
+		}
+		if (number != "." || !currentOperation.includes(".")) {
+			currentOperation += number;
+		}
+		updateDisplay();
 	}
 }
 
-function selectOperator() {
+function selectOperator(op) {
 	if (operator != undefined) {
 		operate();
 	}
 	if (currentOperation != "") {
 		a = Number(currentOperation);
-		operator = this.textContent;
+		operator = op;
 		previousResult = currentOperation + operator;
 		currentOperation = "";
 	}
@@ -84,7 +101,7 @@ function updateDisplay() {
 
 function operate() {
 	if (!previousResult.includes("=") && a != undefined && currentOperation != "") {
-		previousResult += currentOperation + this.textContent;
+		previousResult += currentOperation + "=";
 		b = Number(currentOperation);
 		
 		switch (operator) {
@@ -132,6 +149,8 @@ function divide(x, y) {
 
 //******DEBUG******//
 
+/*
+
 const buttons = document.querySelectorAll("button");
 
 for (let i=0; i<buttons.length; i++) {
@@ -140,5 +159,7 @@ for (let i=0; i<buttons.length; i++) {
 					" | a: " + a + " | b: " + b + " | operator: " + operator + " | result: " + result);
 	})
 }
+
+*/
 
 //******END DEBUG*****//
