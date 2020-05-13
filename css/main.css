@@ -1,7 +1,19 @@
+body {
+	background: #C8E4ED;
+}
+
+p {
+	color: #454545;
+}
+
 #container {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+#header {
+	text-align: center;
 }
 
 #calculator {
@@ -45,12 +57,16 @@
 	grid-gap: 0.3rem;
 }
 
+#footer {
+	text-align: center;
+}
+
 .button {
 	background: #dfdfdf;
 	border: 1px solid rgba(0, 0, 0, 0.15);
 	border-radius: 5px;
 	box-shadow: 1px 1px rgba(0, 0, 0, 0.25);
-	padding: 1.25rem;
+	padding: 1.15rem;
 	font-weight: inherit;
 	font-size: 1rem;
 	outline: none;
