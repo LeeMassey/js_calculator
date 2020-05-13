@@ -32,6 +32,10 @@ deleteButton.addEventListener("click", backspace);
 
 clearButton.addEventListener("click", clear);
 
+document.addEventListener("keydown", () => {
+	alert("!");
+})
+
 function append(number) {
 	if (previousResult.includes("=")) {
 		currentOperation = ""
@@ -87,8 +91,8 @@ function operate() {
 				result = multiply(a, b);
 				break;
 			case "/":
-				if (b == 1) {
-					result = "NOPE!";
+				if (b == 0) {
+					result = "NOPE! No dividing by 0 !!!";
 					break;
 				}
 				result = divide(a, b);
