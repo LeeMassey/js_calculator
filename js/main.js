@@ -55,11 +55,11 @@ document.addEventListener("keydown", (e) => {
 })
 
 function append(number) {
+	if (previousResult.includes("=")) {
+		currentOperation = ""
+		previousResult = "";
+	}
 	if (currentOperation.length < 17) {
-		if (previousResult.includes("=")) {
-			currentOperation = ""
-			previousResult = "";
-		}
 		if (number != "." || !currentOperation.includes(".")) {
 			currentOperation += number;
 		}
@@ -128,6 +128,7 @@ function operate() {
 		a = undefined;
 		b = undefined;
 		operator = undefined;
+		result = undefined;
 	}
 }
 
