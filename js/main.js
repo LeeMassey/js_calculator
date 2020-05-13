@@ -74,7 +74,7 @@ function selectOperator(op) {
 	if (currentOperation != "") {
 		a = Number(currentOperation);
 		operator = op;
-		previousResult = currentOperation + operator;
+		previousResult = currentOperation + " " + operator + " ";
 		currentOperation = "";
 	}
 	updateDisplay();
@@ -101,7 +101,7 @@ function updateDisplay() {
 
 function operate() {
 	if (!previousResult.includes("=") && a != undefined && currentOperation != "") {
-		previousResult += currentOperation + "=";
+		previousResult += currentOperation + " = ";
 		b = Number(currentOperation);
 		
 		switch (operator) {
